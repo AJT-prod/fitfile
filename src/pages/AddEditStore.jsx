@@ -24,7 +24,7 @@ export default function AddEditStore() {
   const [customLabel, setCustomLabel] = useState('')
   const [showCustomInput, setShowCustomInput] = useState(false)
 
-  useEffect(() => {
+  useEffect(() => {document.title = isEditing ? 'FitFile · Edit Store' : 'FitFile · Add Store'
     if (isEditing) {
       const store = getStoreById(id)
       if (!store) { navigate('/stores'); return }

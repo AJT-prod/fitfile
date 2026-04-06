@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { getMeasurements, saveMeasurements, saveLastUpdated } from '../storage'
 
@@ -47,14 +47,23 @@ function handleSave() {
   setEditing(false)
 }
 
+useEffect(() => { document.title = 'FitFile · Measurements' }, [])
   return (
     <div style={{ maxWidth: 480, margin: '0 auto', padding: '2rem 1.5rem' }}>
       <button
-        onClick={() => navigate('/')}
-        style={{ background: 'none', border: 'none', fontSize: 14, color: '#888780', marginBottom: '1.5rem', padding: 0 }}
-      >
-        ← Back
-      </button>
+  onClick={() => {
+    if (editing) {
+      if (confirm('You have unsaved changes. Leave without saving?')) {
+        navigate('/')
+      }
+    } else {
+      navigate('/')
+    }
+  }}
+  style={{ background: 'none', border: 'none', fontSize: 14, color: '#888780', marginBottom: '1.5rem', padding: 0 }}
+>
+  ← Back
+</button>
 
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.25rem' }}>
         <h2 style={{ fontSize: 24, fontWeight: 500 }}>Body measurements</h2>

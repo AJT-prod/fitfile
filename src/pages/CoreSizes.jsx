@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { getCoreSizes, saveCoreSizes, saveLastUpdated } from '../storage'
 
@@ -18,7 +18,9 @@ export default function CoreSizes() {
   const navigate = useNavigate()
   const [editing, setEditing] = useState(false)
   const [sizes, setSizes] = useState(getCoreSizes())
-
+useEffect(() => {
+  document.title = 'FitFile · Core Sizes'
+}, [])
   function handleChange(key, value) {
     setSizes(prev => ({ ...prev, [key]: value }))
   }
@@ -33,14 +35,23 @@ export default function CoreSizes() {
   setEditing(false)
 }
 
+
   return (
     <div style={{ maxWidth: 480, margin: '0 auto', padding: '2rem 1.5rem' }}>
       <button
-        onClick={() => navigate('/')}
-        style={{ background: 'none', border: 'none', fontSize: 14, color: '#888780', marginBottom: '1.5rem', padding: 0 }}
-      >
-        ← Back
-      </button>
+  onClick={() => {
+    if (editing) {
+      if (confirm('You have unsaved changes. Leave without saving?')) {
+        navigate('/')
+      }
+    } else {
+      navigate('/')
+    }
+  }}
+  style={{ background: 'none', border: 'none', fontSize: 14, color: '#888780', marginBottom: '1.5rem', padding: 0 }}
+>
+  ← Back
+</button>
 
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.25rem' }}>
         <h2 style={{ fontSize: 24, fontWeight: 500 }}>Core sizes</h2>

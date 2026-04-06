@@ -10,7 +10,7 @@ export default function Home() {
   const [lastCoreSizes, setLastCoreSizes] = useState(null)
   const [lastMeasurements, setLastMeasurements] = useState(null)
 
-  useEffect(() => {
+  useEffect(() => {document.title = 'FitFile'
     setCoreSizes(getCoreSizes())
     setMeasurements(getMeasurements())
     setStores(getStores())
@@ -41,6 +41,21 @@ export default function Home() {
         <h1 style={{ fontSize: 28, fontWeight: 500, letterSpacing: '-0.02em' }}>FitFile</h1>
         <p style={{ fontSize: 13, color: '#888780', marginTop: 4 }}>Your sizes stored. Store to store.</p>
       </div>
+
+{Object.values(coreSizes).every(v => !v) &&
+  Object.values(measurements).every(v => !v?.in) &&
+  stores.length === 0 && (
+  <div style={{
+    background: '#ffffff',
+    border: '0.5px solid #D3D1C7',
+    borderRadius: 12,
+    padding: '1.25rem',
+    marginBottom: '0.5rem',
+  }}>
+    <p style={{ fontSize: 15, fontWeight: 500, marginBottom: 4 }}>Welcome to FitFile.</p>
+    <p style={{ fontSize: 13, color: '#888780', lineHeight: 1.6 }}>Start by adding your core sizes, body measurements, or a store you shop at. Your data stays on your device — private by default.</p>
+  </div>
+)}
 
       <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
         <SummaryCard

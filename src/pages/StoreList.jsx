@@ -6,10 +6,10 @@ export default function StoreList() {
   const navigate = useNavigate()
   const [stores, setStores] = useState([])
 
-  useEffect(() => {
-    setStores(getStores())
-  }, [])
-
+useEffect(() => {
+  setStores(getStores())
+  document.title = 'FitFile · My Stores'
+}, [])
   return (
     <div style={{ maxWidth: 480, margin: '0 auto', padding: '2rem 1.5rem' }}>
       <button

@@ -7,11 +7,14 @@ export default function StoreDetail() {
   const { id } = useParams()
   const [store, setStore] = useState(null)
 
-  useEffect(() => {
-    const found = getStoreById(id)
-    if (!found) navigate('/stores')
-    else setStore(found)
-  }, [id])
+ useEffect(() => {
+  const found = getStoreById(id)
+  if (!found) navigate('/stores')
+  else {
+    setStore(found)
+    document.title = `FitFile · ${found.name}`
+  }
+}, [id])
 
   function handleDelete() {
     if (confirm(`Remove ${store.name} from your stores?`)) {
