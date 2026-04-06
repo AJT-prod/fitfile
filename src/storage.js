@@ -78,3 +78,14 @@ export function deleteStore(id) {
 export function generateId() {
   return Date.now().toString(36) + Math.random().toString(36).slice(2)
 }
+
+export function getLastUpdated(section) {
+  try {
+    const raw = localStorage.getItem(`fitfile_last_updated_${section}`)
+    return raw ? JSON.parse(raw) : null
+  } catch { return null }
+}
+
+export function saveLastUpdated(section, label, value) {
+  localStorage.setItem(`fitfile_last_updated_${section}`, JSON.stringify({ label, value }))
+}

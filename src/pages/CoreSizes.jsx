@@ -1,17 +1,17 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { getCoreSizes, saveCoreSizes } from '../storage'
+import { getCoreSizes, saveCoreSizes, saveLastUpdated } from '../storage'
 
 const FIELDS = [
-  { key: 'tops', label: 'Tops' },
-  { key: 'bottoms', label: 'Bottoms' },
-  { key: 'outerwear', label: 'Outerwear' },
-  { key: 'jeans', label: 'Jeans / Pants' },
-  { key: 'dresses', label: 'Dresses' },
-  { key: 'shoes', label: 'Shoes / Sneakers' },
-  { key: 'bra', label: 'Bra' },
-  { key: 'underwear', label: 'Underwear / Briefs' },
-  { key: 'socks', label: 'Socks' },
+  { key: 'tops', label: 'Tops', placeholder: 'e.g. M' },
+  { key: 'bottoms', label: 'Bottoms', placeholder: 'e.g. M' },
+  { key: 'outerwear', label: 'Outerwear', placeholder: 'e.g. L' },
+  { key: 'jeans', label: 'Jeans / Pants', placeholder: 'e.g. 31x30' },
+  { key: 'dresses', label: 'Dresses', placeholder: 'e.g. 10' },
+  { key: 'shoes', label: 'Shoes / Sneakers', placeholder: 'e.g. 10.5' },
+  { key: 'bra', label: 'Bra', placeholder: 'e.g. 34B' },
+  { key: 'underwear', label: 'Underwear / Briefs', placeholder: 'e.g. M' },
+  { key: 'socks', label: 'Socks', placeholder: 'e.g. 10-13' },
 ]
 
 export default function CoreSizes() {
@@ -24,9 +24,14 @@ export default function CoreSizes() {
   }
 
   function handleSave() {
-    saveCoreSizes(sizes)
-    setEditing(false)
-  }
+  const previous = getCoreSizes()
+  saveCoreSizes(sizes)
+  const lastChanged = FIELDS.filter(f => sizes[f.key] !== previous[f.key] && sizes[f.key]).pop()
+  const fallback = FIELDS.filter(f => sizes[f.key]).pop()
+  const target = lastChanged || fallback
+  if (target) saveLastUpdated('coreSizes', target.label, sizes[target.key])
+  setEditing(false)
+}
 
   return (
     <div style={{ maxWidth: 480, margin: '0 auto', padding: '2rem 1.5rem' }}>
@@ -51,7 +56,7 @@ export default function CoreSizes() {
       <p style={{ fontSize: 13, color: '#888780', marginBottom: '1.5rem' }}>Your general defaults, not store-specific.</p>
 
       <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
-        {FIELDS.map(({ key, label }) => (
+        {FIELDS.map(({ key, label, placeholder }) => (
           <div
             key={key}
             style={{

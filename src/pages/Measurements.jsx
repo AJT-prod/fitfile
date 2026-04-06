@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { getMeasurements, saveMeasurements } from '../storage'
+import { getMeasurements, saveMeasurements, saveLastUpdated } from '../storage'
 
 const FIELDS = [
   { key: 'height', label: 'Height' },
@@ -40,10 +40,12 @@ export default function Measurements() {
     })
   }
 
-  function handleSave() {
-    saveMeasurements(data)
-    setEditing(false)
-  }
+function handleSave() {
+  saveMeasurements(data)
+  const lastField = FIELDS.filter(f => data[f.key]?.in).pop()
+  if (lastField) saveLastUpdated('measurements', lastField.label, `${data[lastField.key].in}"`)
+  setEditing(false)
+}
 
   return (
     <div style={{ maxWidth: 480, margin: '0 auto', padding: '2rem 1.5rem' }}>
