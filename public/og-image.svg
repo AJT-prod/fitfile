@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" fill="none">
+  <rect width="1200" height="630" fill="#F1EFE8"/>
+
+  <!-- Tag mark -->
+  <rect x="80" y="215" width="200" height="200" rx="44" fill="#378ADD"/>
+  <g transform="translate(140,275) scale(4.8)" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/>
+    <circle cx="7" cy="7" r="0.6" fill="#ffffff" stroke="none"/>
+  </g>
+
+  <!-- Wordmark + tagline -->
+  <text x="330" y="330" font-family="-apple-system, Segoe UI, Helvetica, Arial, sans-serif" font-size="88" font-weight="700" fill="#2C2C2A">FitFile</text>
+  <text x="332" y="378" font-family="-apple-system, Segoe UI, Helvetica, Arial, sans-serif" font-size="30" fill="#888780">Your sizes stored. Store to store.</text>
+
+  <!-- Three small feature chips echoing the app's card language -->
+  <g>
+    <rect x="332" y="420" width="230" height="64" rx="12" fill="#ffffff" stroke="#D3D1C7" stroke-width="1"/>
+    <text x="354" y="459" font-family="-apple-system, Segoe UI, Helvetica, Arial, sans-serif" font-size="24" font-weight="500" fill="#2C2C2A">Core sizes</text>
+
+    <rect x="580" y="420" width="270" height="64" rx="12" fill="#ffffff" stroke="#D3D1C7" stroke-width="1"/>
+    <text x="602" y="459" font-family="-apple-system, Segoe UI, Helvetica, Arial, sans-serif" font-size="24" font-weight="500" fill="#2C2C2A">Measurements</text>
+
+    <rect x="868" y="420" width="220" height="64" rx="12" fill="#ffffff" stroke="#D3D1C7" stroke-width="1"/>
+    <text x="890" y="459" font-family="-apple-system, Segoe UI, Helvetica, Arial, sans-serif" font-size="24" font-weight="500" fill="#2C2C2A">My stores</text>
+  </g>
+</svg>
