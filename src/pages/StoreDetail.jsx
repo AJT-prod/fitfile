@@ -79,6 +79,7 @@ export default function StoreDetail() {
                 display: 'flex',
                 justifyContent: 'space-between',
                 alignItems: 'center',
+                boxShadow: '0 1px 2px rgba(44, 44, 42, 0.04), 0 4px 14px rgba(44, 44, 42, 0.04)',
               }}
             >
               <p style={{ fontSize: 11, color: '#888780', textTransform: 'uppercase', letterSpacing: '0.06em' }}>{category}</p>
@@ -96,6 +97,7 @@ export default function StoreDetail() {
                 display: 'flex',
                 justifyContent: 'space-between',
                 alignItems: 'center',
+                boxShadow: '0 1px 2px rgba(44, 44, 42, 0.04), 0 4px 14px rgba(44, 44, 42, 0.04)',
               }}
             >
               <p style={{ fontSize: 11, color: '#888780', textTransform: 'uppercase', letterSpacing: '0.06em' }}>{item.label}</p>

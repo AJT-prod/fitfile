@@ -93,6 +93,7 @@ useEffect(() => { document.title = 'FitFile · Measurements' }, [])
               border: '0.5px solid #D3D1C7',
               borderRadius: 12,
               padding: '1rem 1.25rem',
+              boxShadow: '0 1px 2px rgba(44, 44, 42, 0.04), 0 4px 14px rgba(44, 44, 42, 0.04)',
             }}
           >
             <p style={{ fontSize: 11, color: '#888780', textTransform: 'uppercase', letterSpacing: '0.06em', marginBottom: 8 }}>{label}</p>

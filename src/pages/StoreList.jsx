@@ -63,6 +63,7 @@ useEffect(() => {
             return (
               <div
                 key={store.id}
+                className="summary-card"
                 onClick={() => navigate(`/stores/${store.id}`)}
                 style={{
                   background: '#ffffff',
@@ -73,13 +74,15 @@ useEffect(() => {
                   display: 'flex',
                   justifyContent: 'space-between',
                   alignItems: 'center',
+                  boxShadow: '0 1px 2px rgba(44, 44, 42, 0.04), 0 4px 14px rgba(44, 44, 42, 0.04)',
+                  transition: 'transform 0.15s ease, box-shadow 0.15s ease',
                 }}
               >
                 <div>
                   <p style={{ fontSize: 16, fontWeight: 500, marginBottom: 4 }}>{store.name}</p>
                   <p style={{ fontSize: 13, color: '#888780' }}>{sizeEntries || 'No sizes added yet'}</p>
                 </div>
-                <span style={{ fontSize: 20, color: '#D3D1C7' }}>›</span>
+                <span style={{ fontSize: 22, color: '#378ADD', fontWeight: 500 }}>›</span>
               </div>
             )
           })}
