@@ -19,3 +19,12 @@ input, select, textarea {
 }
 
 a { text-decoration: none; color: inherit; }
+
+.summary-card:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 2px 4px rgba(44, 44, 42, 0.06), 0 6px 20px rgba(44, 44, 42, 0.06);
+  border-color: #B7CDE8;
+}
+.summary-card:active {
+  transform: translateY(0);
+}

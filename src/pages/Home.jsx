@@ -36,7 +36,8 @@ export default function Home() {
   }
 
   return (
-    <div style={{ maxWidth: 480, margin: '0 auto', padding: '2rem 1.5rem' }}>
+    <div style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '2rem 1.5rem' }}>
+    <div style={{ maxWidth: 480, width: '100%' }}>
       <div style={{ marginBottom: '2rem' }}>
         <h1 style={{ fontSize: 28, fontWeight: 500, letterSpacing: '-0.02em' }}>FitFile</h1>
         <p style={{ fontSize: 13, color: '#888780', marginTop: 4 }}>Your sizes stored. Store to store.</p>
@@ -78,12 +79,14 @@ export default function Home() {
         />
       </div>
     </div>
+    </div>
   )
 }
 
 function SummaryCard({ label, preview, empty, onClick }) {
   return (
     <div
+      className="summary-card"
       onClick={onClick}
       style={{
         background: '#ffffff',
@@ -94,13 +97,15 @@ function SummaryCard({ label, preview, empty, onClick }) {
         display: 'flex',
         justifyContent: 'space-between',
         alignItems: 'center',
+        boxShadow: '0 1px 2px rgba(44, 44, 42, 0.04), 0 4px 14px rgba(44, 44, 42, 0.04)',
+        transition: 'transform 0.15s ease, box-shadow 0.15s ease',
       }}
     >
       <div>
         <p style={{ fontSize: 11, color: '#888780', textTransform: 'uppercase', letterSpacing: '0.06em', marginBottom: 4 }}>{label}</p>
         <p style={{ fontSize: 18, fontWeight: 500, color: empty ? '#B4B2A9' : '#2C2C2A' }}>{preview}</p>
       </div>
-      <span style={{ fontSize: 20, color: '#D3D1C7' }}>›</span>
+      <span style={{ fontSize: 22, color: '#378ADD', fontWeight: 500 }}>›</span>
     </div>
   )
 }
