@@ -18,10 +18,15 @@ export default function Home() {
     setLastMeasurements(getLastUpdated('measurements'))
   }, [])
 
+  function isCoreSizesFilled() {
+    return Object.entries(coreSizes).some(([key, v]) =>
+      key === 'jeans' ? !!(v?.waist || v?.inseam) : !!v
+    )
+  }
+
   function coreSizesPreview() {
     if (lastCoreSizes) return `${lastCoreSizes.label} · ${lastCoreSizes.value}`
-    const filled = Object.values(coreSizes).some(v => v)
-    return filled ? 'Tap to view' : 'No sizes added yet'
+    return isCoreSizesFilled() ? 'Tap to view' : 'No sizes added yet'
   }
 
   function measurementsPreview() {
@@ -43,7 +48,7 @@ export default function Home() {
         <p style={{ fontSize: 13, color: '#888780', marginTop: 4 }}>Your sizes stored. Store to store.</p>
       </div>
 
-{Object.values(coreSizes).every(v => !v) &&
+{!isCoreSizesFilled() &&
   Object.values(measurements).every(v => !v?.in) &&
   stores.length === 0 && (
   <div style={{
@@ -62,7 +67,7 @@ export default function Home() {
         <SummaryCard
           label="Core sizes"
           preview={coreSizesPreview()}
-          empty={!lastCoreSizes && Object.values(coreSizes).every(v => !v)}
+          empty={!lastCoreSizes && !isCoreSizesFilled()}
           onClick={() => navigate('/core-sizes')}
         />
         <SummaryCard

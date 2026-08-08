@@ -6,7 +6,7 @@ const KEYS = {
 
 const defaults = {
   coreSizes: {
-    tops: '', bottoms: '', outerwear: '', jeans: '',
+    tops: '', bottoms: '', outerwear: '', jeans: { waist: '', inseam: '' },
     dresses: '', shoes: '', bra: '', socks: '', underwear: '',
   },
   measurements: {
@@ -23,10 +23,23 @@ const defaults = {
   stores: [],
 }
 
+function normalizeJeans(value) {
+  if (value && typeof value === 'object') {
+    return { waist: value.waist || '', inseam: value.inseam || '' }
+  }
+  if (typeof value === 'string' && value.trim()) {
+    const match = value.trim().match(/^(\d+(?:\.\d+)?)\s*x\s*(\d+(?:\.\d+)?)$/i)
+    if (match) return { waist: match[1], inseam: match[2] }
+    return { waist: value.trim(), inseam: '' }
+  }
+  return { waist: '', inseam: '' }
+}
+
 export function getCoreSizes() {
   try {
     const raw = localStorage.getItem(KEYS.coreSizes)
-    return raw ? JSON.parse(raw) : defaults.coreSizes
+    const parsed = raw ? JSON.parse(raw) : defaults.coreSizes
+    return { ...defaults.coreSizes, ...parsed, jeans: normalizeJeans(parsed.jeans) }
   } catch { return defaults.coreSizes }
 }
 
