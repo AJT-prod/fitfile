@@ -42,9 +42,12 @@ npm run dev
 
 ## Roadmap
 
-- **Phase 2:** Browser extension that surfaces your saved sizes while shopping on clothing store product pages
-- Shoe size conversions (US / UK / EU)
+Currently rounding out the core data model before building Phase 2, so the extension can be built on settled ground:
+
+- Structured jean fields — separate waist + inseam fields instead of one freeform string
 - Metric ↔ imperial conversion helpers
+- Shoe size conversions (US / UK / EU)
+- **Phase 2:** Browser extension that surfaces your saved sizes while shopping on clothing store product pages
 
 ## Background
 

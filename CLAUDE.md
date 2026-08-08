@@ -38,5 +38,9 @@ FitFile is memory, not authority. It never tells the user what size they should 
 - Ease off em-dashes and "it wasn't X, it was Y" constructions in any written copy
 
 ## Roadmap context
-- Phase 2 (next, not started): browser extension that surfaces saved sizes on store product pages
-- Backlog: shoe size conversions (US/UK/EU), metric↔imperial helpers, structured jean fields (separate waist + inseam)
+- Sequencing decision (Aug 2026): backlog before Phase 2. Structured jean fields change the data model (`sizes.jeans` goes from a string to an object), so settling that before the extension exists avoids updating both the app and the extension later. Shoe conversions and the metric/imperial helper also make Phase 2 more useful on day one — the extension can convert a saved size to the site's region/units instead of just echoing back a raw string.
+- Backlog (do first, in this order):
+  1. Structured jean fields — separate waist + inseam instead of one freeform string
+  2. Metric ↔ imperial conversion helpers (reusable utility, not just the measurements screen)
+  3. Shoe size conversions (US/UK/EU, Men's/Women's)
+- Phase 2 (after backlog, not started): browser extension that surfaces saved sizes on store product pages, built on top of the settled data model and reusing the conversion helpers above
