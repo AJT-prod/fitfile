@@ -37,6 +37,7 @@ Most sizing apps try to predict your size using AI or body scanning. FitFile doe
 git clone https://github.com/AJT-prod/fitfile.git
 cd fitfile
 npm install
+git config core.hooksPath .githooks   # one-time: enables the pre-commit build check
 npm run dev
 ```
 
@@ -52,3 +53,5 @@ Currently rounding out the core data model before building Phase 2, so the exten
 ## Background
 
 FitFile was built solo, with Claude as a development partner throughout — from product decisions down to debugging. It's documented as a full case study on my portfolio: *[https://app.prodfolio.io/p/alex/case-study/new-case-study-3]*
+
+<!-- testing pre-commit hook -->
