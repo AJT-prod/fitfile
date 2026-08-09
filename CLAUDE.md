@@ -33,8 +33,8 @@ FitFile is memory, not authority. It never tells the user what size they should 
 
 ## Workflow
 - Alex prefers reacting to a concrete draft/diff over building from scratch — show the change, don't just describe it
-- Always run `npm run build` after edits to confirm nothing's broken before considering a task done
-- Alex commits and pushes manually (not automated) — this is intentional, part of building git fluency
+- A pre-commit hook (`.githooks/pre-commit`) runs `npm run build` automatically and blocks the commit if it fails. One-time setup per clone: `git config core.hooksPath .githooks`
+- Alex commits and pushes manually (not automated) — this is intentional, part of building git fluency. The pre-commit hook is a safety net on top of that, not a replacement for it — Alex still decides what to commit and when to push
 - Ease off em-dashes and "it wasn't X, it was Y" constructions in any written copy
 
 ## Roadmap context

@@ -1,0 +1,15 @@
+#!/bin/sh
+# Pre-commit hook: block the commit if the production build fails.
+# Setup (once per clone): git config core.hooksPath .githooks
+
+echo "Running pre-commit check: npm run build"
+npm run build
+
+if [ $? -ne 0 ]; then
+  echo ""
+  echo "✗ Build failed — commit aborted. Fix the errors above, then try again."
+  exit 1
+fi
+
+echo "✓ Build passed."
+exit 0
