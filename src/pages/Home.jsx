@@ -19,9 +19,12 @@ export default function Home() {
   }, [])
 
   function isCoreSizesFilled() {
-    return Object.entries(coreSizes).some(([key, v]) =>
-      key === 'jeans' ? !!(v?.waist || v?.inseam) : !!v
-    )
+    return Object.entries(coreSizes).some(([key, v]) => {
+      if (key === 'jeans') return !!(v?.waist || v?.inseam)
+      if (key === 'shoes') return !!v?.size
+      if (key === 'bra') return !!(v?.band || v?.cup)
+      return !!v
+    })
   }
 
   function coreSizesPreview() {

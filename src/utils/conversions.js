@@ -74,3 +74,31 @@ export const BRA_CUPS = [
   { us: 'G', uk: 'G', eu: 'H' },
   { us: 'H', uk: 'H', eu: 'I' },
 ]
+
+// Shoe size systems, keyed to the SHOE_SIZES columns above.
+export const SHOE_SYSTEMS = [
+  { key: 'usWomen', label: 'US W' },
+  { key: 'usMen', label: 'US M' },
+  { key: 'uk', label: 'UK' },
+  { key: 'eu', label: 'EU' },
+]
+
+// Looks up a shoe size row by system + value, e.g. findShoeRow('usWomen', '9').
+// Returns null if the value isn't in the chart (no guessing at a match).
+export function findShoeRow(system, value) {
+  const v = String(value ?? '').trim()
+  if (!v || !system) return null
+  return SHOE_SIZES.find(row => row[system] === v) || null
+}
+
+export function findBraBand(value) {
+  const v = String(value ?? '').trim()
+  if (!v) return null
+  return BRA_BANDS.find(row => row.usUk === v) || null
+}
+
+export function findBraCup(value) {
+  const v = String(value ?? '').trim().toUpperCase()
+  if (!v) return null
+  return BRA_CUPS.find(row => row.us.toUpperCase() === v) || null
+}

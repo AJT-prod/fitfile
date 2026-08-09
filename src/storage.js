@@ -7,7 +7,8 @@ const KEYS = {
 const defaults = {
   coreSizes: {
     tops: '', bottoms: '', outerwear: '', jeans: { waist: '', inseam: '' },
-    dresses: '', shoes: '', bra: '', socks: '', underwear: '',
+    dresses: '', shoes: { size: '', system: '' }, bra: { band: '', cup: '' },
+    socks: '', underwear: '',
   },
   measurements: {
     chest: { in: '', cm: '' },
@@ -35,11 +36,39 @@ function normalizeJeans(value) {
   return { waist: '', inseam: '' }
 }
 
+function normalizeShoes(value) {
+  if (value && typeof value === 'object') {
+    return { size: value.size || '', system: value.system || '' }
+  }
+  if (typeof value === 'string' && value.trim()) {
+    return { size: value.trim(), system: '' }
+  }
+  return { size: '', system: '' }
+}
+
+function normalizeBra(value) {
+  if (value && typeof value === 'object') {
+    return { band: value.band || '', cup: value.cup || '' }
+  }
+  if (typeof value === 'string' && value.trim()) {
+    const match = value.trim().match(/^(\d+)\s*([A-Za-z/]+)$/)
+    if (match) return { band: match[1], cup: match[2].toUpperCase() }
+    return { band: value.trim(), cup: '' }
+  }
+  return { band: '', cup: '' }
+}
+
 export function getCoreSizes() {
   try {
     const raw = localStorage.getItem(KEYS.coreSizes)
     const parsed = raw ? JSON.parse(raw) : defaults.coreSizes
-    return { ...defaults.coreSizes, ...parsed, jeans: normalizeJeans(parsed.jeans) }
+    return {
+      ...defaults.coreSizes,
+      ...parsed,
+      jeans: normalizeJeans(parsed.jeans),
+      shoes: normalizeShoes(parsed.shoes),
+      bra: normalizeBra(parsed.bra),
+    }
   } catch { return defaults.coreSizes }
 }
 

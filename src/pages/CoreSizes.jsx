@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { getCoreSizes, saveCoreSizes, saveLastUpdated } from '../storage'
+import { SHOE_SYSTEMS, findShoeRow, findBraBand, findBraCup } from '../utils/conversions'
 
 const FIELDS = [
   { key: 'tops', label: 'Tops', placeholder: 'e.g. M' },
@@ -8,25 +9,51 @@ const FIELDS = [
   { key: 'outerwear', label: 'Outerwear', placeholder: 'e.g. L' },
   { key: 'jeans', label: 'Jeans / Pants', type: 'jeans' },
   { key: 'dresses', label: 'Dresses', placeholder: 'e.g. 10' },
-  { key: 'shoes', label: 'Shoes / Sneakers', placeholder: 'e.g. 10.5' },
-  { key: 'bra', label: 'Bra', placeholder: 'e.g. 34B' },
+  { key: 'shoes', label: 'Shoes / Sneakers', type: 'shoes' },
+  { key: 'bra', label: 'Bra', type: 'bra' },
   { key: 'underwear', label: 'Underwear / Briefs', placeholder: 'e.g. M' },
   { key: 'socks', label: 'Socks', placeholder: 'e.g. 10-13' },
 ]
 
 function isFilled(field, value) {
   if (field.type === 'jeans') return !!(value?.waist || value?.inseam)
+  if (field.type === 'shoes') return !!value?.size
+  if (field.type === 'bra') return !!(value?.band || value?.cup)
   return !!value
 }
 
 function formatValue(field, value) {
   if (field.type === 'jeans') return `${value?.waist || '—'} × ${value?.inseam || '—'}`
+  if (field.type === 'shoes') return value?.size || ''
+  if (field.type === 'bra') return `${value?.band || ''}${value?.cup || ''}`
   return value
 }
 
 function valuesEqual(field, a, b) {
   if (field.type === 'jeans') return (a?.waist || '') === (b?.waist || '') && (a?.inseam || '') === (b?.inseam || '')
+  if (field.type === 'shoes') return (a?.size || '') === (b?.size || '') && (a?.system || '') === (b?.system || '')
+  if (field.type === 'bra') return (a?.band || '') === (b?.band || '') && (a?.cup || '') === (b?.cup || '')
   return a === b
+}
+
+function shoeConversions(shoes) {
+  const row = findShoeRow(shoes?.system, shoes?.size)
+  if (!row) return null
+  return SHOE_SYSTEMS.filter(s => s.key !== shoes.system).map(s => `${s.label} ${row[s.key]}`).join(' · ')
+}
+
+function braConversions(bra) {
+  const bandRow = findBraBand(bra?.band)
+  const cupRow = findBraCup(bra?.cup)
+  if (!bandRow && !cupRow) return null
+  const ukBand = bandRow?.usUk ?? bra.band ?? ''
+  const ukCup = cupRow?.uk ?? bra.cup ?? ''
+  const euBand = bandRow?.eu ?? ''
+  const euCup = cupRow?.eu ?? ''
+  const parts = []
+  if (ukBand || ukCup) parts.push(`UK ${ukBand}${ukCup}`)
+  if (euBand || euCup) parts.push(`EU ${euBand}${euCup}`)
+  return parts.length ? parts.join(' · ') : null
 }
 
 export default function CoreSizes() {
@@ -40,8 +67,8 @@ useEffect(() => {
     setSizes(prev => ({ ...prev, [key]: value }))
   }
 
-  function handleJeansChange(subfield, value) {
-    setSizes(prev => ({ ...prev, jeans: { ...prev.jeans, [subfield]: value } }))
+  function handleSubfieldChange(key, subfield, value) {
+    setSizes(prev => ({ ...prev, [key]: { ...prev[key], [subfield]: value } }))
   }
 
   function handleSave() {
@@ -108,7 +135,7 @@ useEffect(() => {
                     <div style={{ flex: 1 }}>
                       <input
                         value={jeans.waist || ''}
-                        onChange={e => handleJeansChange('waist', e.target.value)}
+                        onChange={e => handleSubfieldChange('jeans', 'waist', e.target.value)}
                         placeholder="e.g. 31"
                         style={{
                           width: '100%',
@@ -128,7 +155,7 @@ useEffect(() => {
                     <div style={{ flex: 1 }}>
                       <input
                         value={jeans.inseam || ''}
-                        onChange={e => handleJeansChange('inseam', e.target.value)}
+                        onChange={e => handleSubfieldChange('jeans', 'inseam', e.target.value)}
                         placeholder="e.g. 30"
                         style={{
                           width: '100%',
@@ -149,6 +176,148 @@ useEffect(() => {
                   <p style={{ fontSize: 22, fontWeight: 500, color: isFilled(field, jeans) ? '#2C2C2A' : '#D3D1C7' }}>
                     {isFilled(field, jeans) ? formatValue(field, jeans) : '—'}
                   </p>
+                )}
+              </div>
+            )
+          }
+
+          if (type === 'shoes') {
+            const shoes = sizes.shoes || { size: '', system: '' }
+            const conversions = shoeConversions(shoes)
+            return (
+              <div
+                key={key}
+                style={{
+                  background: '#ffffff',
+                  border: '0.5px solid #D3D1C7',
+                  borderRadius: 12,
+                  padding: '1rem 1.25rem',
+                  boxShadow: '0 1px 2px rgba(44, 44, 42, 0.04), 0 4px 14px rgba(44, 44, 42, 0.04)',
+                }}
+              >
+                <p style={{ fontSize: 11, color: '#888780', textTransform: 'uppercase', letterSpacing: '0.06em', marginBottom: editing ? 8 : 0 }}>{label}</p>
+                {editing ? (
+                  <>
+                    <input
+                      value={shoes.size || ''}
+                      onChange={e => handleSubfieldChange('shoes', 'size', e.target.value)}
+                      placeholder="e.g. 9.5"
+                      style={{
+                        width: '100%',
+                        border: 'none',
+                        borderBottom: '1px solid #D3D1C7',
+                        fontSize: 16,
+                        fontWeight: 500,
+                        background: 'transparent',
+                        outline: 'none',
+                        color: '#2C2C2A',
+                        paddingBottom: 2,
+                        marginBottom: 10,
+                      }}
+                    />
+                    <div style={{ display: 'flex', gap: 6 }}>
+                      {SHOE_SYSTEMS.map(s => (
+                        <button
+                          key={s.key}
+                          type="button"
+                          onClick={() => handleSubfieldChange('shoes', 'system', s.key === shoes.system ? '' : s.key)}
+                          style={{
+                            padding: '0.3rem 0.65rem',
+                            fontSize: 12,
+                            borderRadius: 8,
+                            border: s.key === shoes.system ? '0.5px solid #378ADD' : '0.5px solid #D3D1C7',
+                            background: s.key === shoes.system ? '#E6F1FB' : 'transparent',
+                            color: s.key === shoes.system ? '#185FA5' : '#5F5E5A',
+                          }}
+                        >
+                          {s.label}
+                        </button>
+                      ))}
+                    </div>
+                    {shoes.size && !shoes.system && (
+                      <p style={{ fontSize: 11, color: '#888780', marginTop: 6 }}>Pick a system to see conversions.</p>
+                    )}
+                  </>
+                ) : (
+                  <>
+                    <p style={{ fontSize: 22, fontWeight: 500, color: isFilled(field, shoes) ? '#2C2C2A' : '#D3D1C7' }}>
+                      {isFilled(field, shoes) ? formatValue(field, shoes) : '—'}
+                      {shoes.system && (
+                        <span style={{ fontSize: 13, fontWeight: 400, color: '#888780', marginLeft: 6 }}>
+                          {SHOE_SYSTEMS.find(s => s.key === shoes.system)?.label}
+                        </span>
+                      )}
+                    </p>
+                    {conversions && <p style={{ fontSize: 13, color: '#888780', marginTop: 4 }}>{conversions}</p>}
+                  </>
+                )}
+              </div>
+            )
+          }
+
+          if (type === 'bra') {
+            const bra = sizes.bra || { band: '', cup: '' }
+            const conversions = braConversions(bra)
+            return (
+              <div
+                key={key}
+                style={{
+                  background: '#ffffff',
+                  border: '0.5px solid #D3D1C7',
+                  borderRadius: 12,
+                  padding: '1rem 1.25rem',
+                  boxShadow: '0 1px 2px rgba(44, 44, 42, 0.04), 0 4px 14px rgba(44, 44, 42, 0.04)',
+                }}
+              >
+                <p style={{ fontSize: 11, color: '#888780', textTransform: 'uppercase', letterSpacing: '0.06em', marginBottom: editing ? 8 : 0 }}>{label}</p>
+                {editing ? (
+                  <div style={{ display: 'flex', gap: 12, alignItems: 'center' }}>
+                    <div style={{ flex: 1 }}>
+                      <input
+                        value={bra.band || ''}
+                        onChange={e => handleSubfieldChange('bra', 'band', e.target.value)}
+                        placeholder="e.g. 34"
+                        style={{
+                          width: '100%',
+                          border: 'none',
+                          borderBottom: '1px solid #D3D1C7',
+                          fontSize: 16,
+                          fontWeight: 500,
+                          background: 'transparent',
+                          outline: 'none',
+                          color: '#2C2C2A',
+                          paddingBottom: 2,
+                        }}
+                      />
+                      <p style={{ fontSize: 11, color: '#888780', marginTop: 3 }}>band</p>
+                    </div>
+                    <div style={{ flex: 1 }}>
+                      <input
+                        value={bra.cup || ''}
+                        onChange={e => handleSubfieldChange('bra', 'cup', e.target.value)}
+                        placeholder="e.g. B"
+                        style={{
+                          width: '100%',
+                          border: 'none',
+                          borderBottom: '1px solid #D3D1C7',
+                          fontSize: 16,
+                          fontWeight: 500,
+                          background: 'transparent',
+                          outline: 'none',
+                          color: '#2C2C2A',
+                          paddingBottom: 2,
+                        }}
+                      />
+                      <p style={{ fontSize: 11, color: '#888780', marginTop: 3 }}>cup</p>
+                    </div>
+                  </div>
+                ) : (
+                  <>
+                    <p style={{ fontSize: 22, fontWeight: 500, color: isFilled(field, bra) ? '#2C2C2A' : '#D3D1C7' }}>
+                      {isFilled(field, bra) ? formatValue(field, bra) : '—'}
+                    </p>
+                    {conversions && <p style={{ fontSize: 13, color: '#888780', marginTop: 4 }}>{conversions}</p>}
+                  </>
                 )}
               </div>
             )
