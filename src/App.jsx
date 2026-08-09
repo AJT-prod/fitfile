@@ -5,6 +5,7 @@ import Measurements from './pages/Measurements'
 import StoreList from './pages/StoreList'
 import StoreDetail from './pages/StoreDetail'
 import AddEditStore from './pages/AddEditStore'
+import SizeGuide from './pages/SizeGuide'
 
 export default function App() {
   return (
@@ -17,6 +18,7 @@ export default function App() {
         <Route path="/stores/:id" element={<StoreDetail />} />
         <Route path="/stores/new" element={<AddEditStore />} />
         <Route path="/stores/:id/edit" element={<AddEditStore />} />
+        <Route path="/size-guide" element={<SizeGuide />} />
       </Routes>
     </BrowserRouter>
   )

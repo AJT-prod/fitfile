@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { getMeasurements, saveMeasurements, saveLastUpdated } from '../storage'
+import { inToCm, cmToIn } from '../utils/conversions'
 
 const FIELDS = [
   { key: 'height', label: 'Height' },
@@ -14,18 +15,6 @@ const FIELDS = [
   { key: 'thigh', label: 'Thigh' },
 ]
 
-const IN_TO_CM = 2.54
-
-function toCm(inches) {
-  const n = parseFloat(inches)
-  return isNaN(n) ? '' : (n * IN_TO_CM).toFixed(1)
-}
-
-function toIn(cm) {
-  const n = parseFloat(cm)
-  return isNaN(n) ? '' : (n / IN_TO_CM).toFixed(1)
-}
-
 export default function Measurements() {
   const navigate = useNavigate()
   const [editing, setEditing] = useState(false)
@@ -34,8 +23,8 @@ export default function Measurements() {
   function handleChange(key, unit, value) {
     setData(prev => {
       const other = unit === 'in'
-        ? { cm: toCm(value) }
-        : { in: toIn(value) }
+        ? { cm: inToCm(value) }
+        : { in: cmToIn(value) }
       return { ...prev, [key]: { ...prev[key], [unit]: value, ...other } }
     })
   }

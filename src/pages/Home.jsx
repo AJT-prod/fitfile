@@ -82,6 +82,12 @@ export default function Home() {
           empty={stores.length === 0}
           onClick={() => navigate('/stores')}
         />
+        <SummaryCard
+          label="Size guide"
+          preview="Shoe, apparel & bra conversion charts"
+          empty={false}
+          onClick={() => navigate('/size-guide')}
+        />
       </div>
     </div>
     </div>
