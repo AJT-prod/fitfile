@@ -26,7 +26,7 @@ FitFile is memory, not authority. It never tells the user what size they should 
 - App always opens to Home
 
 ## Data model (localStorage keys)
-- `fitfile_core_sizes` — general defaults: tops, bottoms, outerwear, jeans, dresses, shoes, bra, underwear, socks
+- `fitfile_core_sizes` — general defaults: tops, bottoms, outerwear, jeans `{ waist, inseam }`, dresses, shoes `{ size, system }` (system is `usWomen`/`usMen`/`uk`/`eu`), bra `{ band, cup }`, underwear, socks
 - `fitfile_measurements` — height, chest, waist, hips, inseam, shoulder, sleeve, neck, thigh, each `{ in, cm }`
 - `fitfile_stores` — array of `{ id, name, notes, sizes: { [category]: string, custom: [{label, value}] } }`
 - `fitfile_last_updated_coreSizes` / `fitfile_last_updated_measurements` — `{ label, value }` for Home screen summary
@@ -39,8 +39,10 @@ FitFile is memory, not authority. It never tells the user what size they should 
 
 ## Roadmap context
 - Sequencing decision (Aug 2026): backlog before Phase 2. Structured jean fields change the data model (`sizes.jeans` goes from a string to an object), so settling that before the extension exists avoids updating both the app and the extension later. Shoe conversions and the metric/imperial helper also make Phase 2 more useful on day one — the extension can convert a saved size to the site's region/units instead of just echoing back a raw string.
-- Backlog (do first, in this order):
-  1. Structured jean fields — separate waist + inseam instead of one freeform string
-  2. Metric ↔ imperial conversion helpers (reusable utility, not just the measurements screen)
-  3. Shoe size conversions (US/UK/EU, Men's/Women's)
-- Phase 2 (after backlog, not started): browser extension that surfaces saved sizes on store product pages, built on top of the settled data model and reusing the conversion helpers above
+- Backlog — done:
+  1. ✅ Structured jean fields — separate waist + inseam instead of one freeform string
+  2. ✅ Metric ↔ imperial conversion helpers — `src/utils/conversions.js`, reused by the Measurements screen
+  3. ✅ Shoe size conversions (US/UK/EU, Men's/Women's) — Core Sizes shoes field has a size input + system toggle, shows the other three systems inline
+  4. ✅ Bra size conversions (bonus, added alongside shoe sizes) — Core Sizes bra field split into Band + Cup, shows UK/EU equivalents inline
+  - Also shipped: a standalone `/size-guide` reference page with static shoe, apparel, and bra conversion charts
+- Phase 2 (not started): browser extension that surfaces saved sizes on store product pages, built on top of the settled data model and reusing the conversion helpers in `src/utils/conversions.js`
