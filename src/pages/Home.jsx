@@ -46,9 +46,12 @@ export default function Home() {
   return (
     <div style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '2rem 1.5rem' }}>
     <div style={{ maxWidth: 480, width: '100%' }}>
-      <div style={{ marginBottom: '2rem' }}>
-        <h1 style={{ fontSize: 28, fontWeight: 500, letterSpacing: '-0.02em' }}>FitFile</h1>
-        <p style={{ fontSize: 13, color: '#888780', marginTop: 4 }}>Your sizes stored. Store to store.</p>
+      <div style={{ marginBottom: '2rem', display: 'flex', alignItems: 'center', gap: '1.5rem' }}>
+        <img src="/favicon.svg" alt="" width={100} height={100} style={{ width: 100, height: 100, maxWidth: '35vw', maxHeight: '35vw', flexShrink: 0 }} />
+        <div>
+          <h1 style={{ fontSize: 28, fontWeight: 500, letterSpacing: '-0.02em' }}>FitFile</h1>
+          <p style={{ fontSize: 13, color: '#888780', marginTop: 4 }}>Your sizes stored. Store to store.</p>
+        </div>
       </div>
 
 {!isCoreSizesFilled() &&
