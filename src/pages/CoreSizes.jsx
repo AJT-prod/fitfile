@@ -94,7 +94,7 @@ useEffect(() => {
       navigate('/')
     }
   }}
-  style={{ background: 'none', border: 'none', fontSize: 14, color: '#888780', marginBottom: '1.5rem', padding: 0 }}
+  style={{ background: 'none', border: 'none', fontSize: 14, color: '#5F5E5A', marginBottom: '1.5rem', padding: 0 }}
 >
   ← Back
 </button>
@@ -110,7 +110,7 @@ useEffect(() => {
           </button>
         )}
       </div>
-      <p style={{ fontSize: 13, color: '#888780', marginBottom: '1.5rem' }}>Your general defaults, not store-specific.</p>
+      <p style={{ fontSize: 13, color: '#5F5E5A', marginBottom: '1.5rem' }}>Your general defaults, not store-specific.</p>
 
       <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
         {FIELDS.map((field) => {
@@ -129,7 +129,7 @@ useEffect(() => {
                   boxShadow: '0 1px 2px rgba(44, 44, 42, 0.04), 0 4px 14px rgba(44, 44, 42, 0.04)',
                 }}
               >
-                <p style={{ fontSize: 11, color: '#888780', textTransform: 'uppercase', letterSpacing: '0.06em', marginBottom: editing ? 8 : 0 }}>{label}</p>
+                <p style={{ fontSize: 11, color: '#5F5E5A', textTransform: 'uppercase', letterSpacing: '0.06em', marginBottom: editing ? 8 : 0 }}>{label}</p>
                 {editing ? (
                   <div style={{ display: 'flex', gap: 12, alignItems: 'center' }}>
                     <div style={{ flex: 1 }}>
@@ -149,7 +149,7 @@ useEffect(() => {
                           paddingBottom: 2,
                         }}
                       />
-                      <p style={{ fontSize: 11, color: '#888780', marginTop: 3 }}>waist</p>
+                      <p style={{ fontSize: 11, color: '#5F5E5A', marginTop: 3 }}>waist</p>
                     </div>
                     <div style={{ color: '#D3D1C7', fontSize: 16 }}>×</div>
                     <div style={{ flex: 1 }}>
@@ -169,7 +169,7 @@ useEffect(() => {
                           paddingBottom: 2,
                         }}
                       />
-                      <p style={{ fontSize: 11, color: '#888780', marginTop: 3 }}>inseam</p>
+                      <p style={{ fontSize: 11, color: '#5F5E5A', marginTop: 3 }}>inseam</p>
                     </div>
                   </div>
                 ) : (
@@ -195,7 +195,7 @@ useEffect(() => {
                   boxShadow: '0 1px 2px rgba(44, 44, 42, 0.04), 0 4px 14px rgba(44, 44, 42, 0.04)',
                 }}
               >
-                <p style={{ fontSize: 11, color: '#888780', textTransform: 'uppercase', letterSpacing: '0.06em', marginBottom: editing ? 8 : 0 }}>{label}</p>
+                <p style={{ fontSize: 11, color: '#5F5E5A', textTransform: 'uppercase', letterSpacing: '0.06em', marginBottom: editing ? 8 : 0 }}>{label}</p>
                 {editing ? (
                   <>
                     <input
@@ -235,7 +235,7 @@ useEffect(() => {
                       ))}
                     </div>
                     {shoes.size && !shoes.system && (
-                      <p style={{ fontSize: 11, color: '#888780', marginTop: 6 }}>Pick a system to see conversions.</p>
+                      <p style={{ fontSize: 11, color: '#5F5E5A', marginTop: 6 }}>Pick a system to see conversions.</p>
                     )}
                   </>
                 ) : (
@@ -243,12 +243,12 @@ useEffect(() => {
                     <p style={{ fontSize: 22, fontWeight: 500, color: isFilled(field, shoes) ? '#2C2C2A' : '#D3D1C7' }}>
                       {isFilled(field, shoes) ? formatValue(field, shoes) : '—'}
                       {shoes.system && (
-                        <span style={{ fontSize: 13, fontWeight: 400, color: '#888780', marginLeft: 6 }}>
+                        <span style={{ fontSize: 13, fontWeight: 400, color: '#5F5E5A', marginLeft: 6 }}>
                           {SHOE_SYSTEMS.find(s => s.key === shoes.system)?.label}
                         </span>
                       )}
                     </p>
-                    {conversions && <p style={{ fontSize: 13, color: '#888780', marginTop: 4 }}>{conversions}</p>}
+                    {conversions && <p style={{ fontSize: 13, color: '#5F5E5A', marginTop: 4 }}>{conversions}</p>}
                   </>
                 )}
               </div>
@@ -269,7 +269,7 @@ useEffect(() => {
                   boxShadow: '0 1px 2px rgba(44, 44, 42, 0.04), 0 4px 14px rgba(44, 44, 42, 0.04)',
                 }}
               >
-                <p style={{ fontSize: 11, color: '#888780', textTransform: 'uppercase', letterSpacing: '0.06em', marginBottom: editing ? 8 : 0 }}>{label}</p>
+                <p style={{ fontSize: 11, color: '#5F5E5A', textTransform: 'uppercase', letterSpacing: '0.06em', marginBottom: editing ? 8 : 0 }}>{label}</p>
                 {editing ? (
                   <div style={{ display: 'flex', gap: 12, alignItems: 'center' }}>
                     <div style={{ flex: 1 }}>
@@ -289,7 +289,7 @@ useEffect(() => {
                           paddingBottom: 2,
                         }}
                       />
-                      <p style={{ fontSize: 11, color: '#888780', marginTop: 3 }}>band</p>
+                      <p style={{ fontSize: 11, color: '#5F5E5A', marginTop: 3 }}>band</p>
                     </div>
                     <div style={{ flex: 1 }}>
                       <input
@@ -308,7 +308,7 @@ useEffect(() => {
                           paddingBottom: 2,
                         }}
                       />
-                      <p style={{ fontSize: 11, color: '#888780', marginTop: 3 }}>cup</p>
+                      <p style={{ fontSize: 11, color: '#5F5E5A', marginTop: 3 }}>cup</p>
                     </div>
                   </div>
                 ) : (
@@ -316,7 +316,7 @@ useEffect(() => {
                     <p style={{ fontSize: 22, fontWeight: 500, color: isFilled(field, bra) ? '#2C2C2A' : '#D3D1C7' }}>
                       {isFilled(field, bra) ? formatValue(field, bra) : '—'}
                     </p>
-                    {conversions && <p style={{ fontSize: 13, color: '#888780', marginTop: 4 }}>{conversions}</p>}
+                    {conversions && <p style={{ fontSize: 13, color: '#5F5E5A', marginTop: 4 }}>{conversions}</p>}
                   </>
                 )}
               </div>
@@ -337,7 +337,7 @@ useEffect(() => {
                 boxShadow: '0 1px 2px rgba(44, 44, 42, 0.04), 0 4px 14px rgba(44, 44, 42, 0.04)',
               }}
             >
-              <p style={{ fontSize: 11, color: '#888780', textTransform: 'uppercase', letterSpacing: '0.06em' }}>{label}</p>
+              <p style={{ fontSize: 11, color: '#5F5E5A', textTransform: 'uppercase', letterSpacing: '0.06em' }}>{label}</p>
               {editing ? (
                 <input
                   value={sizes[key] || ''}

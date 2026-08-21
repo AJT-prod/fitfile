@@ -96,7 +96,7 @@ export default function AddEditStore() {
 
   const labelStyle = {
     fontSize: 11,
-    color: '#888780',
+    color: '#5F5E5A',
     textTransform: 'uppercase',
     letterSpacing: '0.06em',
     display: 'block',
@@ -107,7 +107,7 @@ export default function AddEditStore() {
     <div style={{ maxWidth: 480, margin: '0 auto', padding: '2rem 1.5rem' }}>
       <button
         onClick={() => navigate(isEditing ? `/stores/${id}` : '/stores')}
-        style={{ background: 'none', border: 'none', fontSize: 14, color: '#888780', marginBottom: '1.5rem', padding: 0 }}
+        style={{ background: 'none', border: 'none', fontSize: 14, color: '#5F5E5A', marginBottom: '1.5rem', padding: 0 }}
       >
         ← Back
       </button>
@@ -115,7 +115,7 @@ export default function AddEditStore() {
       <h2 style={{ fontSize: 24, fontWeight: 500, marginBottom: '0.25rem' }}>
         {isEditing ? 'Edit store' : 'Add a store'}
       </h2>
-      <p style={{ fontSize: 13, color: '#888780', marginBottom: '1.5rem' }}>
+      <p style={{ fontSize: 13, color: '#5F5E5A', marginBottom: '1.5rem' }}>
         Record your sizes for a specific store.
       </p>
 
@@ -158,7 +158,7 @@ export default function AddEditStore() {
                     justifyContent: 'space-between',
                     alignItems: 'center',
                   }}>
-                    <p style={{ fontSize: 12, color: '#888780' }}>{category}</p>
+                    <p style={{ fontSize: 12, color: '#5F5E5A' }}>{category}</p>
                     <input
                       value={value}
                       onChange={e => handleSizeChange(category, e.target.value)}
@@ -196,7 +196,7 @@ export default function AddEditStore() {
                     justifyContent: 'space-between',
                     alignItems: 'center',
                   }}>
-                    <p style={{ fontSize: 12, color: '#888780' }}>{item.label}</p>
+                    <p style={{ fontSize: 12, color: '#5F5E5A' }}>{item.label}</p>
                     <input
                       value={item.value}
                       onChange={e => handleCustomValueChange(i, e.target.value)}

@@ -14,7 +14,7 @@ useEffect(() => {
     <div style={{ maxWidth: 480, margin: '0 auto', padding: '2rem 1.5rem' }}>
       <button
         onClick={() => navigate('/')}
-        style={{ background: 'none', border: 'none', fontSize: 14, color: '#888780', marginBottom: '1.5rem', padding: 0 }}
+        style={{ background: 'none', border: 'none', fontSize: 14, color: '#5F5E5A', marginBottom: '1.5rem', padding: 0 }}
       >
         ← Back
       </button>
@@ -22,7 +22,7 @@ useEffect(() => {
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.5rem' }}>
         <div>
           <h2 style={{ fontSize: 24, fontWeight: 500, marginBottom: '0.25rem' }}>My stores</h2>
-          <p style={{ fontSize: 13, color: '#888780' }}>Your sizes, by store.</p>
+          <p style={{ fontSize: 13, color: '#5F5E5A' }}>Your sizes, by store.</p>
         </div>
         <button
           onClick={() => navigate('/stores/new')}
@@ -48,7 +48,7 @@ useEffect(() => {
           padding: '2rem 1.25rem',
           textAlign: 'center',
         }}>
-          <p style={{ fontSize: 16, color: '#888780', marginBottom: 4 }}>No stores yet.</p>
+          <p style={{ fontSize: 16, color: '#5F5E5A', marginBottom: 4 }}>No stores yet.</p>
           <p style={{ fontSize: 13, color: '#B4B2A9' }}>Add a store to start tracking your sizes.</p>
         </div>
       ) : (
@@ -80,7 +80,7 @@ useEffect(() => {
               >
                 <div>
                   <p style={{ fontSize: 16, fontWeight: 500, marginBottom: 4 }}>{store.name}</p>
-                  <p style={{ fontSize: 13, color: '#888780' }}>{sizeEntries || 'No sizes added yet'}</p>
+                  <p style={{ fontSize: 13, color: '#5F5E5A' }}>{sizeEntries || 'No sizes added yet'}</p>
                 </div>
                 <span style={{ fontSize: 22, color: '#378ADD', fontWeight: 500 }}>›</span>
               </div>

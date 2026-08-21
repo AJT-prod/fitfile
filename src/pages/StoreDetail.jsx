@@ -32,7 +32,7 @@ export default function StoreDetail() {
     <div style={{ maxWidth: 480, margin: '0 auto', padding: '2rem 1.5rem' }}>
       <button
         onClick={() => navigate('/stores')}
-        style={{ background: 'none', border: 'none', fontSize: 14, color: '#888780', marginBottom: '1.5rem', padding: 0 }}
+        style={{ background: 'none', border: 'none', fontSize: 14, color: '#5F5E5A', marginBottom: '1.5rem', padding: 0 }}
       >
         ← Back
       </button>
@@ -64,7 +64,7 @@ export default function StoreDetail() {
           textAlign: 'center',
           marginBottom: 8,
         }}>
-          <p style={{ fontSize: 14, color: '#888780' }}>No sizes added yet.</p>
+          <p style={{ fontSize: 14, color: '#5F5E5A' }}>No sizes added yet.</p>
         </div>
       ) : (
         <div style={{ display: 'flex', flexDirection: 'column', gap: 8, marginBottom: 8 }}>
@@ -82,7 +82,7 @@ export default function StoreDetail() {
                 boxShadow: '0 1px 2px rgba(44, 44, 42, 0.04), 0 4px 14px rgba(44, 44, 42, 0.04)',
               }}
             >
-              <p style={{ fontSize: 11, color: '#888780', textTransform: 'uppercase', letterSpacing: '0.06em' }}>{category}</p>
+              <p style={{ fontSize: 11, color: '#5F5E5A', textTransform: 'uppercase', letterSpacing: '0.06em' }}>{category}</p>
               <p style={{ fontSize: 22, fontWeight: 500 }}>{value}</p>
             </div>
           ))}
@@ -100,7 +100,7 @@ export default function StoreDetail() {
                 boxShadow: '0 1px 2px rgba(44, 44, 42, 0.04), 0 4px 14px rgba(44, 44, 42, 0.04)',
               }}
             >
-              <p style={{ fontSize: 11, color: '#888780', textTransform: 'uppercase', letterSpacing: '0.06em' }}>{item.label}</p>
+              <p style={{ fontSize: 11, color: '#5F5E5A', textTransform: 'uppercase', letterSpacing: '0.06em' }}>{item.label}</p>
               <p style={{ fontSize: 22, fontWeight: 500 }}>{item.value}</p>
             </div>
           ))}
@@ -131,7 +131,7 @@ export default function StoreDetail() {
           width: '100%',
           padding: '0.85rem',
           background: 'transparent',
-          color: '#888780',
+          color: '#5F5E5A',
           border: '0.5px solid #D3D1C7',
           borderRadius: 12,
           fontSize: 14,

@@ -23,7 +23,7 @@ function Table({ columns, rows }) {
                   textAlign: 'left',
                   padding: '6px 8px',
                   fontSize: 11,
-                  color: '#888780',
+                  color: '#5F5E5A',
                   textTransform: 'uppercase',
                   letterSpacing: '0.06em',
                   borderBottom: '1px solid #EFEDE6',
@@ -68,13 +68,13 @@ export default function SizeGuide() {
     <div style={{ maxWidth: 480, margin: '0 auto', padding: '2rem 1.5rem' }}>
       <button
         onClick={() => navigate('/')}
-        style={{ background: 'none', border: 'none', fontSize: 14, color: '#888780', marginBottom: '1.5rem', padding: 0 }}
+        style={{ background: 'none', border: 'none', fontSize: 14, color: '#5F5E5A', marginBottom: '1.5rem', padding: 0 }}
       >
         ← Back
       </button>
 
       <h2 style={{ fontSize: 24, fontWeight: 500, marginBottom: '0.25rem' }}>Size guide</h2>
-      <p style={{ fontSize: 13, color: '#888780', marginBottom: '1.5rem' }}>General reference charts for converting between regions.</p>
+      <p style={{ fontSize: 13, color: '#5F5E5A', marginBottom: '1.5rem' }}>General reference charts for converting between regions.</p>
 
       <div style={{ background: '#FAEEDA', border: '0.5px solid #FAC775', borderRadius: 10, padding: '0.75rem 1rem', marginBottom: '1.5rem' }}>
         <p style={{ fontSize: 13, color: '#854F0B' }}>These are standard industry charts, not any specific brand's sizing. Fit varies by brand, so treat them as a starting point.</p>
@@ -91,7 +91,7 @@ export default function SizeGuide() {
 
         <div style={card}>
           <p style={{ fontSize: 15, fontWeight: 500, marginBottom: 4 }}>Apparel sizes</p>
-          <p style={{ fontSize: 12, color: '#888780', marginBottom: 10 }}>Numeric sizing for tops, bottoms, and dresses. Letter sizes like S/M/L stay consistent across regions.</p>
+          <p style={{ fontSize: 12, color: '#5F5E5A', marginBottom: 10 }}>Numeric sizing for tops, bottoms, and dresses. Letter sizes like S/M/L stay consistent across regions.</p>
           <Table
             columns={['US', 'UK', 'EU']}
             rows={APPAREL_SIZES.map(r => [r.us, r.uk, r.eu])}

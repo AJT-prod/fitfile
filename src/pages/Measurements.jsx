@@ -49,7 +49,7 @@ useEffect(() => { document.title = 'FitFile · Measurements' }, [])
       navigate('/')
     }
   }}
-  style={{ background: 'none', border: 'none', fontSize: 14, color: '#888780', marginBottom: '1.5rem', padding: 0 }}
+  style={{ background: 'none', border: 'none', fontSize: 14, color: '#5F5E5A', marginBottom: '1.5rem', padding: 0 }}
 >
   ← Back
 </button>
@@ -65,7 +65,7 @@ useEffect(() => { document.title = 'FitFile · Measurements' }, [])
           </button>
         )}
       </div>
-      <p style={{ fontSize: 13, color: '#888780', marginBottom: '1.5rem' }}>Your measurements in both units.</p>
+      <p style={{ fontSize: 13, color: '#5F5E5A', marginBottom: '1.5rem' }}>Your measurements in both units.</p>
 
       {editing && (
         <div style={{ background: '#E6F1FB', border: '0.5px solid #B5D4F4', borderRadius: 10, padding: '0.75rem 1rem', marginBottom: '1.25rem' }}>
@@ -85,7 +85,7 @@ useEffect(() => { document.title = 'FitFile · Measurements' }, [])
               boxShadow: '0 1px 2px rgba(44, 44, 42, 0.04), 0 4px 14px rgba(44, 44, 42, 0.04)',
             }}
           >
-            <p style={{ fontSize: 11, color: '#888780', textTransform: 'uppercase', letterSpacing: '0.06em', marginBottom: 8 }}>{label}</p>
+            <p style={{ fontSize: 11, color: '#5F5E5A', textTransform: 'uppercase', letterSpacing: '0.06em', marginBottom: 8 }}>{label}</p>
             <div style={{ display: 'flex', gap: 12, alignItems: 'center' }}>
               {editing ? (
                 <>
@@ -106,7 +106,7 @@ useEffect(() => { document.title = 'FitFile · Measurements' }, [])
                         paddingBottom: 2,
                       }}
                     />
-                    <p style={{ fontSize: 11, color: '#888780', marginTop: 3 }}>in</p>
+                    <p style={{ fontSize: 11, color: '#5F5E5A', marginTop: 3 }}>in</p>
                   </div>
                   <div style={{ color: '#D3D1C7', fontSize: 16 }}>/</div>
                   <div style={{ flex: 1 }}>
@@ -126,7 +126,7 @@ useEffect(() => { document.title = 'FitFile · Measurements' }, [])
                         paddingBottom: 2,
                       }}
                     />
-                    <p style={{ fontSize: 11, color: '#888780', marginTop: 3 }}>cm</p>
+                    <p style={{ fontSize: 11, color: '#5F5E5A', marginTop: 3 }}>cm</p>
                   </div>
                 </>
               ) : (
@@ -134,7 +134,7 @@ useEffect(() => { document.title = 'FitFile · Measurements' }, [])
                   <p style={{ fontSize: 20, fontWeight: 500, color: data[key]?.in ? '#2C2C2A' : '#D3D1C7' }}>
                     {data[key]?.in ? `${data[key].in}"` : '—'}
                   </p>
-                  <p style={{ fontSize: 13, color: '#888780' }}>
+                  <p style={{ fontSize: 13, color: '#5F5E5A' }}>
                     {data[key]?.cm ? `${data[key].cm} cm` : ''}
                   </p>
                 </>

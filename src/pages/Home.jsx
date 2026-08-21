@@ -50,7 +50,7 @@ export default function Home() {
         <img src="/favicon.svg" alt="" width={100} height={100} style={{ width: 100, height: 100, maxWidth: '35vw', maxHeight: '35vw', flexShrink: 0 }} />
         <div>
           <h1 style={{ fontSize: 28, fontWeight: 500, letterSpacing: '-0.02em' }}>FitFile</h1>
-          <p style={{ fontSize: 13, color: '#888780', marginTop: 4 }}>Your sizes stored. Store to store.</p>
+          <p style={{ fontSize: 13, color: '#5F5E5A', marginTop: 4 }}>Your sizes stored. Store to store.</p>
         </div>
       </div>
 
@@ -65,7 +65,7 @@ export default function Home() {
     marginBottom: '0.5rem',
   }}>
     <p style={{ fontSize: 15, fontWeight: 500, marginBottom: 4 }}>Welcome to FitFile.</p>
-    <p style={{ fontSize: 13, color: '#888780', lineHeight: 1.6 }}>Start by adding your core sizes, body measurements, or a store you shop at. Your data stays on your device — private by default.</p>
+    <p style={{ fontSize: 13, color: '#5F5E5A', lineHeight: 1.6 }}>Start by adding your core sizes, body measurements, or a store you shop at. Your data stays on your device — private by default.</p>
   </div>
 )}
 
@@ -119,7 +119,7 @@ function SummaryCard({ label, preview, empty, onClick }) {
       }}
     >
       <div>
-        <p style={{ fontSize: 11, color: '#888780', textTransform: 'uppercase', letterSpacing: '0.06em', marginBottom: 4 }}>{label}</p>
+        <p style={{ fontSize: 11, color: '#5F5E5A', textTransform: 'uppercase', letterSpacing: '0.06em', marginBottom: 4 }}>{label}</p>
         <p style={{ fontSize: 18, fontWeight: 500, color: empty ? '#B4B2A9' : '#2C2C2A' }}>{preview}</p>
       </div>
       <span style={{ fontSize: 22, color: '#378ADD', fontWeight: 500 }}>›</span>
