@@ -1,0 +1,76 @@
+/* Mirrors the app's design system. Plain CSS here since the popup has no
+   React/inline-style setup and :hover needs a stylesheet anyway. */
+:root {
+  --blue: #378ADD;
+  --bg: #E6F1FB;
+  --card-border: #D3D1C7;
+  --text: #2C2C2A;
+  --muted: #5F5E5A;
+  --amber-bg: #FAEEDA;
+  --amber-text: #854F0B;
+  --shadow: 0 1px 2px rgba(44,44,42,0.04), 0 4px 14px rgba(44,44,42,0.04);
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  width: 340px;
+  background: var(--bg);
+  color: var(--text);
+  font: 400 14px/1.4 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+button { font: inherit; color: inherit; cursor: pointer; }
+#app { padding: 14px 14px 12px; display: flex; flex-direction: column; gap: 12px; }
+
+.header { display: flex; align-items: center; justify-content: space-between; }
+.wordmark { font-weight: 500; font-size: 15px; }
+.icon-btn { background: none; border: none; padding: 4px; border-radius: 8px; color: var(--muted); display: flex; }
+.icon-btn:hover { background: rgba(55,138,221,0.1); color: var(--blue); }
+
+.store-picker {
+  display: flex; align-items: center; justify-content: space-between;
+  width: 100%; padding: 10px 12px;
+  background: #fff; border: 0.5px solid var(--card-border); border-radius: 12px;
+  box-shadow: var(--shadow); text-align: left;
+}
+.store-picker:hover { border-color: var(--blue); }
+.store-picker .eyebrow { display: block; font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; }
+.store-picker .name { font-weight: 500; }
+.store-picker .action { font-size: 13px; color: var(--blue); }
+
+.notice { font-size: 13px; color: var(--muted); padding: 0 2px; }
+
+.card { background: #fff; border: 0.5px solid var(--card-border); border-radius: 12px; box-shadow: var(--shadow); overflow: hidden; }
+.card-title { font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; padding: 0 2px 6px; }
+.row { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; padding: 10px 12px; }
+.row + .row { border-top: 0.5px solid #EAE8E1; }
+.row .label { font-size: 13px; color: var(--muted); }
+.row .value-wrap { text-align: right; }
+.row .value { font-weight: 500; font-size: 15px; }
+.row .detail { font-size: 12px; color: var(--muted); }
+
+.row.child { padding-left: 28px; }
+.row.child .label::before { content: "↳ "; color: #B4B2A9; }
+.row.child .value { font-size: 14px; }
+.row.empty-value .value { color: #B4B2A9; font-weight: 400; }
+
+.row.override { background: var(--amber-bg); }
+.row.override .label, .row.override .value, .row.override .detail { color: var(--amber-text); }
+.row.override + .row, .row + .row.override { border-top-color: transparent; }
+
+.notes { padding: 10px 12px; font-size: 13px; color: var(--text); border-top: 0.5px solid #EAE8E1; }
+.notes .label { display: block; font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 2px; }
+
+.empty { background: #fff; border: 0.5px solid var(--card-border); border-radius: 12px; box-shadow: var(--shadow); padding: 20px 16px; text-align: center; display: flex; flex-direction: column; align-items: center; gap: 6px; }
+.empty .headline { font-weight: 500; }
+.empty .sub { font-size: 13px; color: var(--muted); }
+.primary-btn { margin-top: 6px; background: var(--blue); color: #fff; border: none; border-radius: 8px; padding: 8px 14px; font-weight: 500; }
+.primary-btn:hover { filter: brightness(0.95); }
+
+.footer { display: flex; align-items: center; justify-content: space-between; font-size: 12px; color: var(--muted); padding: 0 2px; }
+.sync { display: flex; align-items: center; gap: 6px; }
+.dot { width: 7px; height: 7px; border-radius: 50%; background: #B4B2A9; }
+.dot.synced { background: var(--blue); }
+.dot.syncing { background: var(--blue); animation: pulse 1.2s ease-in-out infinite; }
+.dot.error { background: #EF9F27; }
+@keyframes pulse { 50% { opacity: 0.3; } }
+.link-btn { background: none; border: none; color: var(--blue); font-size: 12px; padding: 0; }
+.link-btn:hover { text-decoration: underline; }
