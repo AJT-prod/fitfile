@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { getCoreSizes, saveCoreSizes, saveLastUpdated } from '../storage'
-import { SHOE_SYSTEMS, findShoeRow, findBraBand, findBraCup } from '../utils/conversions'
+import { SHOE_SYSTEMS, findShoeRow, findBraBand, findBraCup } from '../../extension/lib/conversions'
 
 const FIELDS = [
   { key: 'tops', label: 'Tops', placeholder: 'e.g. M' },

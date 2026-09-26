@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { SHOE_SIZES, APPAREL_SIZES, BRA_BANDS, BRA_CUPS } from '../utils/conversions'
+import { SHOE_SIZES, APPAREL_SIZES, BRA_BANDS, BRA_CUPS } from '../../extension/lib/conversions'
 
 const card = {
   background: '#ffffff',

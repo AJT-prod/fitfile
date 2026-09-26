@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { getMeasurements, saveMeasurements, saveLastUpdated } from '../storage'
-import { inToCm, cmToIn } from '../utils/conversions'
+import { inToCm, cmToIn } from '../../extension/lib/conversions'
 
 const FIELDS = [
   { key: 'height', label: 'Height' },

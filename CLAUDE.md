@@ -14,6 +14,7 @@ FitFile is memory, not authority. It never tells the user what size they should 
 * `localStorage` only — no backend, no accounts, no auth
 * Styling is inline `style={{}}` objects per-component (no CSS framework, no Tailwind). Shared hover/active states live in `src/index.css` since inline styles can't do `:hover`.
 * Deployed via Netlify, auto-deploys on push to `main`
+* Shared conversion helpers live in one file, `extension/lib/conversions.js`, used by both the app and the extension (Sept 2026). Chrome can only load files inside `extension/`, so the app imports from there rather than keeping a second copy that could drift. Keep this file plain browser JavaScript: no React, no npm packages, no Vite-only imports, since the extension loads it with no build step.
 
 ## Design system
 
@@ -51,11 +52,11 @@ FitFile is memory, not authority. It never tells the user what size they should 
 * Backlog — done:
 
   1. ✅ Structured jean fields — separate waist + inseam instead of one freeform string
-  2. ✅ Metric ↔ imperial conversion helpers — `src/utils/conversions.js`, reused by the Measurements screen
+  2. ✅ Metric ↔ imperial conversion helpers — now `extension/lib/conversions.js` (moved from `src/utils/` in Sept 2026), reused by the Measurements screen
   3. ✅ Shoe size conversions (US/UK/EU, Men's/Women's) — Core Sizes shoes field has a size input + system toggle, shows the other three systems inline
   4. ✅ Bra size conversions (bonus, added alongside shoe sizes) — Core Sizes bra field split into Band + Cup, shows UK/EU equivalents inline
   * Also shipped: a standalone `/size-guide` reference page with static shoe, apparel, and bra conversion charts
-* Phase 2 (design in progress, implementation started): browser extension that surfaces saved sizes on store product pages, built on top of the settled data model and reusing the conversion helpers in `src/utils/conversions.js`. Extensive design decisions made — see below, including the sync trigger mechanism.
+* Phase 2 (design in progress, implementation started): browser extension that surfaces saved sizes on store product pages, built on top of the settled data model and reusing the conversion helpers in `extension/lib/conversions.js`. Extensive design decisions made — see below, including the sync trigger mechanism.
 
 ## Phase 2 design decisions
 
