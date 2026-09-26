@@ -165,7 +165,7 @@ export function buildSizesView({ coreSizes, measurements, store, display }) {
     .map(f => ({ label: f.label, in: measurements?.[f.key]?.in || '', cm: measurements?.[f.key]?.cm || '' }))
     .filter(m => m.in || m.cm)
 
-  const hasStoreData = !!store && (Object.keys(overridesByCore).length > 0 || Object.keys(childrenByCore).length > 0 || extras.length > 0)
+  const hasStoreData = !!store && (Object.keys(overridesByCore).length > 0 || Object.keys(childrenByCore).length > 0 || extras.length > 0 || !!store.notes?.trim())
 
   return {
     rows,
